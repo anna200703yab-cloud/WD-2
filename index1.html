@@ -1,374 +1,638 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-   <title>✯𝔽𝕖𝕣𝕣𝕒𝕣𝕚♞</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Сравнение Ferrari Roma, Ferrari 296 GTB и Ferrari Purosangue: характеристики, мощность и ориентировочные цены.">
+  <title>Ferrari — Искусство скорости</title>
+  <style>
+    :root {
+      --red: #e10600;
+      --red-dark: #a80703;
+      --bg: #090909;
+      --surface: #141414;
+      --surface-2: #1c1c1c;
+      --text: #f5f5f5;
+      --muted: #aaa;
+      --line: rgba(255,255,255,.12);
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 0px; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--bg);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin-inline: auto; }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(8,8,8,.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+    .nav-wrap {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: .18em;
+      white-space: nowrap;
+    }
+    .logo-mark {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 42px;
+      color: #fff;
+      background: var(--red);
+      clip-path: polygon(8% 0, 92% 0, 82% 100%, 18% 100%);
+      font-size: 1.25rem;
+      font-weight: 900;
+    }
+    .nav { display: flex; align-items: center; gap: 28px; }
+    .nav a {
+      color: #ddd;
+      font-size: .88rem;
+      transition: color .2s ease;
+    }
+    .nav a:hover, .nav a:focus-visible { color: #ff3933; }
+    .menu-toggle, .menu-label { display: none; }
+
+    .hero {
+      min-height: 680px;
+      display: grid;
+      align-items: center;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.94) 0%, rgba(0,0,0,.72) 42%, rgba(0,0,0,.12) 100%),
+        linear-gradient(0deg, var(--bg) 0%, transparent 24%),
+        url("https://images.unsplash.com/photo-1592198084033-aadb27bc2abf?auto=format&fit=crop&w=2000&q=85") center 58% / cover;
+    }
+    .hero-content { padding-block: 10px; max-width: 680px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #ff4a43;
+      text-transform: uppercase;
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .22em;
+    }
+    .eyebrow::before { content: ""; width: 32px; height: 2px; background: var(--red); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      margin: 20px 0;
+      max-width: 700px;
+      font-size: clamp(3rem, 8vw, 6.8rem);
+      line-height: .94;
+      letter-spacing: -.055em;
+      text-transform: uppercase;
+    }
+    h1 span { color: var(--red); }
+    .hero p { max-width: 560px; color: #d0d0d0; font-size: 1.08rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 48px;
+      padding: 12px 22px;
+      border: 1px solid var(--red);
+      background: var(--red);
+      color: white;
+      font-size: .83rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .button:hover { transform: translateY(-3px); background: var(--red-dark); border-color: var(--red-dark); }
+    .button.secondary { background: transparent; border-color: rgba(255,255,255,.45); }
+    .button.secondary:hover { background: white; color: #111; border-color: white; }
+
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-block: 1px solid var(--line);
+      background: #101010;
+    }
+    .stat { padding: 25px 20px; text-align: center; border-right: 1px solid var(--line); }
+    .stat:last-child { border-right: 0; }
+    .stat strong { display: block; font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.15; }
+    .stat span { color: var(--muted); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; }
+
+    section { padding: 96px 0; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 34px; }
+    .section-heading h2 { margin: 10px 0 0; font-size: clamp(2.1rem, 5vw, 3.7rem); line-height: 1; letter-spacing: -.04em; text-transform: uppercase; }
+    .section-heading p { max-width: 420px; margin-bottom: 0; color: var(--muted); }
+    .models { background: #0d0d0d; }
+    .model-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    .model-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      transition: transform .25s ease, border-color .25s ease;
+    }
+    .model-card:hover { transform: translateY(-7px); border-color: rgba(225,6,0,.75); }
+    .model-image { height: 230px; overflow: hidden; background: #222; }
+    .model-image img { height: 100%; object-fit: cover; transition: transform .5s ease; }
+    .model-card:hover .model-image img { transform: scale(1.06); }
+    .model-body { padding: 24px; }
+    .model-type { color: #ff4a43; font-size: .72rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .model-body h3 { margin: 8px 0 12px; font-size: 1.65rem; line-height: 1.1; text-transform: uppercase; }
+    .model-body p { min-height: 76px; color: var(--muted); font-size: .92rem; }
+    .price { margin: 20px 0; padding-top: 17px; border-top: 1px solid var(--line); }
+    .price small { display: block; color: var(--muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; }
+    .price strong { font-size: 1.45rem; }
+    .spec-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .spec { padding: 12px; background: #202020; }
+    .spec strong { display: block; font-size: 1rem; }
+    .spec span { color: var(--muted); font-size: .73rem; }
+
+    .feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .feature-image { min-height: 440px; overflow: hidden; background: #171717; }
+    .feature-image img { height: 100%; min-height: 440px; object-fit: cover; }
+    .feature-copy h2 { margin: 14px 0 22px; font-size: clamp(2.2rem, 5vw, 4.2rem); line-height: 1; letter-spacing: -.045em; text-transform: uppercase; }
+    .feature-copy p { color: var(--muted); }
+    .feature-list { list-style: none; padding: 0; margin: 26px 0 0; }
+    .feature-list li { padding: 13px 0; border-bottom: 1px solid var(--line); }
+    .feature-list li::before { content: "↗"; color: var(--red); font-weight: 900; margin-right: 12px; }
+
+    .comparison { background: #101010; }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); }
+    table { width: 100%; border-collapse: collapse; min-width: 650px; }
+    th, td { padding: 17px 20px; text-align: left; border-bottom: 1px solid var(--line); }
+    th { background: #1a1a1a; color: white; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; }
+    td { color: #d1d1d1; }
+    td:first-child { color: white; font-weight: 700; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover { background: #191919; }
+
+    .safety-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 32px; }
+    .safety-card { padding: 26px; border: 1px solid var(--line); background: var(--surface); }
+    .safety-icon { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 18px; color: white; background: var(--red); font-size: 1.2rem; font-weight: 900; }
+    .safety-card h3 { margin-bottom: 8px; }
+    .safety-card p { margin: 0; color: var(--muted); font-size: .9rem; }
+
+    .cta {
+      padding: 75px 0;
+      background: linear-gradient(110deg, rgba(0,0,0,.92), rgba(0,0,0,.62)), url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=85") center / cover;
+      border-block: 1px solid var(--line);
+    }
+    .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+    .cta h2 { max-width: 680px; margin: 0; font-size: clamp(2rem, 5vw, 3.8rem); line-height: 1; text-transform: uppercase; }
+    .footer { padding: 28px 0; color: var(--muted); font-size: .8rem; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer strong { color: white; letter-spacing: .12em; }
+    .disclaimer { max-width: 720px; margin: 16px 0 0; font-size: .75rem; }
+
+    @media (max-width: 900px) {
+      .menu-label {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 9px 12px;
+        border: 1px solid var(--line);
+        cursor: pointer;
+        font-size: .8rem;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+      .menu-toggle { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+      .menu-toggle:focus-visible + .menu-label { outline: 2px solid white; outline-offset: 4px; }
+      .nav {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        padding: 18px 20px 24px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: #0b0b0b;
+        border-bottom: 1px solid var(--line);
+      }
+
+
+      
+      .nav a { padding: 13px 0; border-bottom: 1px solid var(--line); }
+      .nav a:last-child { border-bottom: 0; }
+      .menu-toggle:checked ~ .nav { display: flex; }
+      .model-grid { grid-template-columns: 1fr 1fr; }
+      .model-card:last-child { grid-column: 1 / -1; }
+      .model-card:last-child .model-image { height: 280px; }
+      .feature { gap: 32px; }
+    }
+    @media (max-width: 650px) {
+      .container { width: min(100% - 28px, var(--max)); }
+      .nav-wrap { min-height: 68px; }
+      .logo { font-size: .9rem; }
+      .logo-mark { width: 30px; height: 36px; }
+      .nav { top: 68px; }
+      .hero { min-height: 200px; background-position: 58% center; }
+      .hero-content { padding-block: 0px; }
+      .hero p { font-size: 1rem; }
+      .stats-strip { grid-template-columns: 1fr; }
+      .stat { padding: 18px; border-right: 0; border-bottom: 1px solid var(--line); }
+      .stat:last-child { border-bottom: 0; }
+      section { padding: px 0; }
+      .section-heading { display: block; }
+      .section-heading p { margin-top: 18px; }
+      .model-grid { grid-template-columns: 1fr; }
+      .model-card:last-child { grid-column: auto; }
+      .model-image, .model-card:last-child .model-image { height: 230px; }
+      .model-body p { min-height: 0; }
+      .feature { grid-template-columns: 1fr; }
+      .feature-image, .feature-image img { min-height: 280px; height: 280px; }
+      .safety-grid { grid-template-columns: 1fr; }
+      .cta-inner, .footer-inner { align-items: flex-start; flex-direction: column; }
+      .cta { padding: 60px 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+    /* Первый экран: текст слева, автомобиль справа */
+.hero {
+  min-height: 0;
+  padding: 0;
+  background: #090909;
+  overflow: hidden;
+}
+
+.hero-layout {
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 35px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+  padding: 35px 0;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 5vw, 5.8rem);
+  line-height: 0.98;
+}
+
+.hero-image {
+  height: 480px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+/* Затемнение слева для плавного перехода к фону */
+.hero-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    #090909 0%,
+    rgba(9, 9, 9, 0.15) 35%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.hero-image:hover img {
+  transform: scale(1.04);
+}
+
+/* Планшеты и телефоны */
+@media (max-width: 800px) {
+  .hero-layout {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    min-height: 0;
+  }
+
+  .hero-content {
+    padding: 35px 0 15px;
+  }
+
+  .hero-image {
+    height: 300px;
+  }
+
+  .hero-image::after {
+    background: linear-gradient(
+      180deg,
+      #090909 0%,
+      transparent 35%
+    );
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .hero-image {
+    height: 230px;
+  }
+
+  .hero .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+.model-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.model-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.model-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.spec-grid {
+  align-content: start;
+  grid-auto-rows: minmax(94px, auto);
+}
+
+.price {
+  margin-top: auto;
+  min-height: 82px;
+}
+
+/* На планшетах */
+@media (max-width: 900px) {
+  .model-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* На телефонах */
+@media (max-width: 650px) {
+  .model-grid {
+    grid-template-columns: 1fr;
+  }
+}
+  </style>
 </head>
-<header style="
-    position: sticky;
-    top: 0;
-    background: #ffffff;
-    z-index: 1000;
-    padding: 10px 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-    text-align: center;
-  ">
-    <h1 style="text-align: center; font-size: 30px;">✯𝔽𝕖𝕣𝕣𝕒𝕣𝕚♞</h1>
-    <h2 style="text-align: center">Сравнительный анализ трёх моделей</р>
-    <nav>
-    <a href="#intro" target="_self">Общее сравнение</a> |
-    <a href="#roma" target="_self">Ferrari Roma</a> |
-    <a href="#296gtb" target="_self">Ferrari 296 GTB</a> |
-    <a href="#purosangue" target="_self">Ferrari Purosangue</a> 
-  </nav>
-</header>
 <body>
-  
+  <header class="header">
+    <div class="container nav-wrap">
+      <a class="logo" href="#home" aria-label="Ferrari — на главную">
+        <span class="logo-mark">F</span><span>FERRARI</span>
+      </a>
+      <input class="menu-toggle" type="checkbox" id="menu-toggle" aria-label="Открыть меню">
+      <label class="menu-label" for="menu-toggle"><span>МЕНЮ</span><span aria-hidden="true">☰</span></label>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#models">Модели</a>
+        <a href="#technology">Технологии</a>
+        <a href="#comparison">Сравнение</a>
+        <a href="#safety">Безопасность</a>
+      </nav>
+    </div>
+  </header>
+
   <main>
-    <section id="intro" style="scroll-margin-top: 220px;"> 
-      <br>
-      <br>
-      <article style="background: #ffe4ea; font-size: 25px; padding: 32px 28px 25px 32px; box-shadow: 0 6px 18px rgba(0,0,0,1); position: relative; overflow: hidden; border-left: 7px solid #bc0000;">
-        <strong>Ferrari</strong> – итальянский производитель <em>спортивных автомобилей</em>,
-        основанный в <time datetime="1939">1939 году</time> Энцо Феррари.
-        Компания базируется в Маранелло, Италия.
-        В данном обзоре мы сравним три актуальные модели разных классов:
-        <b>Roma</b> (GT-купе), <b>296 GTB</b> (гибридный спорткар) и
-        <b>Purosangue</b> (кроссовер/FAV).</article>
-     <h2 style="text-align: center; font-size: 30px;">Общее сравнение трёх моделей</h2>
+   <section class="hero" id="home">
+  <div class="container hero-layout">
 
-      <table border="1" style=" margin: 0 auto; width: 1500px; font-size: 20px;">
-        <thead style="background-color: #f76c6c;">
-          <tr>
-            <th>Характеристика</th>
-            <th>Ferrari Roma</th>
-            <th>Ferrari 296 GTB</th>
-            <th>Ferrari Purosangue</th>
-          </tr>
-        </thead>
-        <tbody style="text-align: center; background-color: #ffe4ea;">
-          <tr><td>Тип двигателя</td><td>Бензиновый V8</td><td>Гибридный V6</td><td>Бензиновый V12</td></tr>
-          <tr><td>Расход топлива</td><td>~11.2 л/100 км</td><td>~6.4 л/100 км</td><td>~17.3 л/100 км</td></tr>
-          <tr><td>Тип КПП</td><td>Роботизированная</td><td>Роботизированная</td><td>Роботизированная</td></tr>
-          <tr><td>Передач</td><td>8</td><td>8</td><td>8</td></tr>
-          <tr><td>Габариты (Д×Ш×В)</td><td>4656×1974×1301</td><td>4565×1958×1187</td><td>4973×2028×1589</td></tr>
-          <tr><td>Багажник</td><td>255 л</td><td>201 л</td><td>473 л</td></tr>
-          <tr><td>ABS / ESP</td><td>Есть</td><td>Есть</td><td>Есть</td></tr>
-          <tr><td>Подушки</td><td>Есть</td><td>Есть</td><td>Есть</td></tr>
-          <tr><td>Euro NCAP</td><td>Нет данных</td><td>Нет данных</td><td>Нет данных</td></tr>
-          <tr><td>Разгон 0–100</td><td>3.4 с</td><td>2.9 с</td><td>3.3 с</td></tr>
-          <tr><td>Макс. скорость</td><td>320 км/ч</td><td>330 км/ч</td><td>310 км/ч</td></tr>
-          <tr><td>Цена</td><td>~€222 000</td><td>~€269 000</td><td>~€390 000</td></tr>
-          <tr><td>Wi-Fi / Bluetooth</td><td>Bluetooth / опц. Wi-Fi</td><td>Bluetooth / опц. Wi-Fi</td><td>Bluetooth / опц. Wi-Fi</td></tr>
-          <tr><td>Тормоза</td><td>Дисковые</td><td>Дисковые</td><td>Дисковые</td></tr>
-          <tr><td>AEB</td><td>Есть</td><td>Есть</td><td>Есть</td></tr>
-          <tr><td>Гарантия</td><td>3 года</td><td>3 года + 7 лет ТО</td><td>3 года</td></tr>
-        </tbody>
-      </table>
+    <div class="hero-content">
+      <span class="eyebrow">Итальянская легенда</span>
 
-      <h2 style="text-align: center; font-size: 30px;"> Результат сравнения </h2>
-      <ul style="font-size: 25px;">
-        <li><strong>Roma</strong> – самый доступный и сбалансированный вариант.</li>
-        <li><strong>296 GTB</strong> – самый быстрый и экономичный (гибрид).</li>
-        <li><strong>Purosangue</strong> – самый практичный и мощный (V12).</li>
-      </ul>
-      <p></p>
-     
-      </section>
-     <section id="roma" style="scroll-margin-top: 100px;">
-      <br>
-      <br>
-      <h1 style="text-align: center; font-size: 50px;">Ferrari Roma</h1>
-
-      <figure style="text-align: center">
-        <img src="Ма1.jpg"
-             alt="Ferrari Roma – вид спереди"
-             title="Ferrari Roma"
-             width="800" height="500">
-        <figcaption style="text-align: center; font-size: 18px;">Ferrari Roma – элегантное купе в стиле 1960-х</figcaption>
-      </figure>
+      <h1>
+        Создана,<br>
+        чтобы <span>впечатлять</span>
+      </h1>
 
       <p>
-         <article style="background: #ffe4ea; font-size: 28px; border-radius: 14px; padding: 32px 28px 25px 32px; box-shadow: 0 6px 18px rgba(0,0,0,1); position: relative; overflow: hidden; border-left: 7px solid #bc0000;">
-           <b>Ferrari Roma</b> – это <em>2-дверное купе</em>, представленное
-        в <time datetime="2019-11-13">ноябре 2019 года</time>.
-        Модель сочетает элегантный дизайн в стиле <i>gran turismo</i> 1960-х
-        с современными технологиями. 
-         </article>
+        Откройте мир Ferrari — где инженерная точность,
+        смелый дизайн и эмоции от вождения соединяются
+        в каждом автомобиле.
       </p>
-      <br>
-      <h2 style="text-align: center; font-size: 30px;">Ключевые параметры</h2>
 
-      <div style="text-align: center;">
-      <table border="1" style=" margin: 0 auto; width: 1000px;font-size: 28px;">
-            <colgroup>
-                <col style="width: 400px; background: #ffe4ea">
-                <col style="width: 400px;  background: #f8f8f8">
-            </colgroup>
-              <tr><th>Параметр</th><th>Значение</th></tr>
-              <tr><td>Двигатель</td><td>V8 3.9 л Twin-Turbo</td></tr>
-              <tr><td>Мощность</td><td>620 л.с.</td></tr>
-              <tr><td>Разгон 0–100</td><td>3.4 с</td></tr>
-              <tr><td>Макс. скорость</td><td>320 км/ч</td></tr>
-              <tr><td>Багажник</td><td>255 л</td></tr>
-              <tr><td>Цена</td><td>~€222 000</td></tr>
-      </table>
+      <div class="actions">
+        <a class="button" href="#models">Выбрать модель</a>
+        <a class="button secondary" href="#comparison">
+          Сравнить характеристики
+        </a>
       </div>
-  <br>
-  <br>
-      <h2 style="text-align: center; font-size: 30px; ">Раскрывающаяся информация</h2>
- <article style="background: #ffe4ea; border-radius: 14px; padding: 32px 28px 25px 32px; box-shadow: 0 6px 18px rgba(0,0,0,1); position: relative; overflow: hidden; border-left: 7px solid #bc0000;">
-      <details>
-        <summary style="font-size: 25px;">🔒 Системы безопасности</summary>
-        <ul>
-         <li style="font-size: 20px;">ABS – антиблокировочная система</li>
-         <li style="font-size: 20px;">ESP – система курсовой устойчивости</li>
-         <li style="font-size: 20px;">Фронтальные подушки безопасности</li>
-         <li style="font-size: 20px;">Боковые подушки и шторки</li>
-         <li style="font-size: 20px;">Контроль тяги (TCS)</li>
-         <li style="font-size: 20px;">Система предотвращения столкновений (AEB)</li>
-         <li style="font-size: 20px;">Контроль слепых зон</li>
-        </ul>
-      </details>
+    </div>
 
-      <details>
-        <summary style="font-size: 25px;">⚙️ Технические характеристики</summary>
-        <table border="1" style="margin: 0 auto; width: 700px;">
-            <colgroup>
-            <col style="width: 400px; background-color: #f8f8f8;">
-            <col style="width: 400px; background-color: #f8f8f8;">
-        </colgroup>
-          <tr style="font-size: 20px;"><th>Характеристика</th><th>Значение</th></tr>
-          <tr style="font-size: 20px;"><td>Тип двигателя</td><td>Бензиновый, V8 3.9 л Twin-Turbo</td></tr>
-          <tr style="font-size: 20px;"><td>Расход топлива</td><td>~11.2 л/100 км (WLTP)</td></tr>
-          <tr style="font-size: 20px;"><td>Тип КПП</td><td>Роботизированная (DCT)</td></tr>
-          <tr style="font-size: 20px;"><td>Количество передач</td><td>8</td></tr>
-          <tr style="font-size: 20px;"><td>Габариты (Д×Ш×В)</td><td>4656 × 1974 × 1301 мм</td></tr>
-          <tr style="font-size: 20px;"><td>Объём багажника</td><td>255 л</td></tr>
-          <tr style="font-size: 20px;"><td>Тормоза</td><td>Дисковые вентилируемые (карбон-керамика)</td></tr>
-          <tr style="font-size: 20px;"><td>Гарантия</td><td>3 года без ограничения пробега</td></tr>
-          <tr style="font-size: 20px;"><td>Wi-Fi / Bluetooth</td><td>Bluetooth – да; Wi-Fi – опционально</td></tr>
-        </table>
-      </details>
+    <div class="hero-image">
+      <img
+        src="C:\Веб\Лаб2-3\Ферарри.jpg"
+        alt="Спортивный автомобиль"
+      >
+    </div>
 
-      <details style="font-size: 25px;">
-        <summary>📊 Рейтинг безопасности (условный)</summary>
-        <p style="font-size: 20px; text-align: center;">Официального рейтинга Euro NCAP для Ferrari Roma нет.</p>
-        <p style="font-size: 20px; text-align: center;">Пассивная безопасность: <progress value="85" max="100"></progress> 85%</p>
-        <p style="font-size: 20px; text-align: center;">Активная безопасность: <progress value="90" max="100"></progress> 90%</p>
-        <p style="font-size: 20px; text-align: center;">Системы помощи водителю: <progress value="80" max="100"></progress> 80%</p>
-      </details>
-</article> 
-<br>
-<br>
-<article style="background: #e5f7ab; border-radius: 14px; padding: 32px 28px 25px 32px; box-shadow: 0 6px 18px rgba(0,0,0,1); position: relative; overflow: hidden; border-left: 7px solid #a4be4f;">
-      <aside>
-       
-        <h4 style="text-align: center; font-size: 30px;">💡 Интересный факт</h4>
-        <p style="font-size: 25px;">
-          Название <b>Roma</b> – это дань уважения городу Риму и итальянскому стилю
-          <i>la dolce vita</i>. Дизайн кузова вдохновлён классическими
-          Ferrari 250 GT Berlinetta Lusso 1960-х годов.
-        </p>
-      </aside>
-      </article>
+  </div>
+</section>
+
+    <div class="stats-strip" aria-label="Ключевые особенности">
+      <div class="stat"><strong>830 л.с.</strong><span>Максимальная мощность в подборке</span></div>
+      <div class="stat"><strong>2,9 сек</strong><span>Разгон 0–100 км/ч у 296 GTB</span></div>
+      <div class="stat"><strong>V6 / V8 / V12</strong><span>Инженерия и характер</span></div>
+    </div>
+
+    <section class="models" id="models">
+      <div class="container">
+        <div class="section-heading">
+          <div><span class="eyebrow">Линейка автомобилей</span><h2>Три характера.<br>Одна страсть.</h2></div>
+          <p>От элегантного гран-туризмо до гибридного спорткара и мощного четырёхдверного автомобиля.</p>
+        </div>
+        <div class="model-grid">
+          <article class="model-card">
+            <div class="model-image">
+              <img src="C:\Веб\Лаб2-3\Ма.jpg" alt="Красный спортивный автомобиль Ferrari" loading="lazy">
+            </div>
+            <div class="model-body">
+              <span class="model-type">Grand Touring</span>
+              <h3>Ferrari Roma</h3>
+              <p>Современная интерпретация итальянского стиля: лаконичный силуэт, комфорт для дальних поездок и динамичный характер.</p>
+              <div class="spec-grid">
+                <div class="spec"><strong>620 л.с.</strong><span>Мощность</span></div>
+                <div class="spec"><strong>3,4 сек</strong><span>0–100 км/ч</span></div>
+                <div class="spec"><strong>3,9 л V8</strong><span>Двигатель</span></div>
+                <div class="spec"><strong>Задний</strong><span>Привод</span></div>
+              </div>
+              <div class="price"><small>Ориентировочная цена</small><strong>от €200 000</strong></div>
+              <a class="button secondary" href="#comparison">Все характеристики</a>
+            </div>
+          </article>
+
+          <article class="model-card">
+            <div class="model-image">
+              <img src="C:\Веб\Лаб2-3\Ма2.jpg" alt="Низкий спортивный автомобиль на дороге" loading="lazy">
+            </div>
+            <div class="model-body">
+              <span class="model-type">Plug-in Hybrid</span>
+              <h3>Ferrari 296 GTB</h3>
+              <p>Гибридная спортивная модель, сочетающая V6 с электромотором для впечатляющего ускорения и точной управляемости.</p>
+              <div class="spec-grid">
+                <div class="spec"><strong>830 л.с.</strong><span>Суммарная мощность</span></div>
+                <div class="spec"><strong>2,9 сек</strong><span>0–100 км/ч</span></div>
+                <div class="spec"><strong>V6 + электромотор</strong><span>Силовая установка</span></div>
+                <div class="spec"><strong>Гибрид</strong><span>Тип системы</span></div>
+              </div>
+              <div class="price"><small>Ориентировочная цена</small><strong>от €270 000</strong></div>
+              <a class="button secondary" href="#comparison">Все характеристики</a>
+            </div>
+          </article>
+
+          <article class="model-card">
+            <div class="model-image">
+              <img src="C:\Веб\Лаб2-3\Ма3.jpeg" alt="Мощный автомобиль в драматичном освещении" loading="lazy">
+            </div>
+            <div class="model-body">
+              <span class="model-type">Four-door Performance</span>
+              <h3>Ferrari Purosangue</h3>
+              <p>Просторный и универсальный автомобиль с высокой посадкой, выразительным дизайном и атмосферным двигателем V12.</p>
+              <div class="spec-grid">
+                <div class="spec"><strong>725 л.с.</strong><span>Мощность</span></div>
+                <div class="spec"><strong>3,3 сек</strong><span>0–100 км/ч</span></div>
+                <div class="spec"><strong>6,5 л V12</strong><span>Двигатель</span></div>
+                <div class="spec"><strong>4 места</strong><span>Посадочные места</span></div>
+              </div>
+              <div class="price"><small>Ориентировочная цена</small><strong>от €390 000</strong></div>
+              <a class="button secondary" href="#comparison">Все характеристики</a>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
-    <hr>
-  <section id="296gtb" style="scroll-margin-top: 100px;">
-    <br>
-<br>
-<h1 style="text-align: center; font-size: 50px;">Ferrari 296 GTB</h1>
 
-<figure style="text-align: center">
-  <img src="Ма2.2.jpg"
-       alt="Ferrari 296 GTB – гибридный спорткар"
-       title="Ferrari 296 GTB"
-       width="800" height="500">
-  <figcaption style="text-align: center; font-size: 18px;">Ferrari 296 GTB – гибрид с V6 и электромотором</figcaption>
-</figure>
+    <section id="technology">
+      <div class="container feature">
+        <div class="feature-image">
+          <img src="C:\Веб\Лаб2-3\Супер.jpg" alt="Детали спортивного автомобиля" loading="lazy">
+        </div>
+        <div class="feature-copy">
+          <span class="eyebrow">Инженерия и эмоции</span>
+          <h2>Технологии, которые чувствуются</h2>
+          <p>Каждая модель сочетает продуманную аэродинамику, точную настройку шасси и технологии управления, разработанные ради уверенности водителя и ярких впечатлений.</p>
+          <ul class="feature-list">
+            <li>Мощные двигатели и отзывчивая трансмиссия</li>
+            <li>Аэродинамика, сформированная дизайном</li>
+            <li>Современные системы помощи водителю</li>
+            <li>Интерьер, ориентированный на водителя</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-<p>
-  <article style="background: #ffe4ea; font-size: 28px; border-radius: 14px; padding: 32px 28px 25px 32px; box-shadow: 0 6px 18px rgba(0,0,0,1); position: relative; overflow: hidden; border-left: 7px solid #bc0000;">
-    <b>Ferrari 296 GTB</b> – это <em>гибридный спорткар</em>, представленный
-    в <time datetime="2021-06-24">июне 2021 года</time>.
-    Это первый <i>серийный</i> Ferrari с <mark>V6 двигателем</mark> и
-    подключаемым гибридом.
-  </article>
-</p>
-<br>
-<h2 style="text-align: center; font-size: 30px;">Ключевые параметры</h2>
+    <section class="comparison" id="comparison">
+      <div class="container">
+        <div class="section-heading">
+          <div><span class="eyebrow">Ключевые данные</span><h2>Сравнение моделей</h2></div>
+          <p>Основные характеристики в одном месте. Значения и цены приведены ориентировочно и могут зависеть от комплектации и рынка.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Характеристика</th><th>Roma</th><th>296 GTB</th><th>Purosangue</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Тип автомобиля</td><td>Гран-туризмо</td><td>Гибридный спорткар</td><td>Спортивный 4-дверный</td></tr>
+              <tr><td>Двигатель</td><td>V8, 3,9 л</td><td>V6, 3,0 л + электромотор</td><td>V12, 6,5 л</td></tr>
+              <tr><td>Мощность</td><td>620 л.с.</td><td>830 л.с.</td><td>725 л.с.</td></tr>
+              <tr><td>Разгон 0–100 км/ч</td><td>3,4 сек</td><td>2,9 сек</td><td>3,3 сек</td></tr>
+              <tr><td>Привод</td><td>Задний</td><td>Задний</td><td>Полный</td></tr>
+              <tr><td>Ориентировочная цена</td><td>от €200 000</td><td>от €270 000</td><td>от €390 000</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
 
-<div style="text-align: center;">
-  <table border="1" style="margin: 0 auto; width: 1000px; font-size: 28px;">
-    <colgroup>
-      <col style="width: 400px; background: #ffe4ea">
-      <col style="width: 400px; background: #f8f8f8">
-    </colgroup>
-    <tr><th>Параметр</th><th>Значение</th></tr>
-    <tr><td>Двигатель</td><td>Гибрид V6 3.0 л + электро</td></tr>
-    <tr><td>Мощность</td><td>830 л.с. (суммарно)</td></tr>
-    <tr><td>Разгон 0–100</td><td>2.9 с</td></tr>
-    <tr><td>Макс. скорость</td><td>330 км/ч</td></tr>
-    <tr><td>Багажник</td><td>201 л</td></tr>
-    <tr><td>Цена</td><td>~€269 000</td></tr>
-  </table>
-</div>
-<br>
-<br>
-<h2 style="text-align: center; font-size: 30px;">Раскрывающаяся информация</h2>
-<article style="background: #ffe4ea; border-radius: 14px; padding: 32px 28px 25px 32px; box-shadow: 0 6px 18px rgba(0,0,0,1); position: relative; overflow: hidden; border-left: 7px solid #bc0000;">
-  <details>
-    <summary style="font-size: 25px;">🔒 Системы безопасности</summary>
-    <ul>
-      <li style="font-size: 20px;">ABS – антиблокировочная система</li>
-      <li style="font-size: 20px;">ESP – система курсовой устойчивости</li>
-      <li style="font-size: 20px;">Подушки безопасности (фронтальные, боковые)</li>
-      <li style="font-size: 20px;">Система e-Diff (электронный дифференциал)</li>
-      <li style="font-size: 20px;">Адаптивный круиз-контроль</li>
-      <li style="font-size: 20px;">Система предотвращения столкновений (AEB)</li>
-      <li style="font-size: 20px;">Контроль слепых зон</li>
-      <li style="font-size: 20px;">Камеры кругового обзора</li>
-    </ul>
-  </details>
+    <section id="safety">
+      <div class="container">
+        <div class="section-heading">
+          <div><span class="eyebrow">Контроль и уверенность</span><h2>Безопасность важна</h2></div>
+          <p>Электронные системы помогают водителю сохранять контроль, не подменяя внимательность и безопасное вождение.</p>
+        </div>
+        <div class="safety-grid">
+          <article class="safety-card">
+            <div class="safety-icon" aria-hidden="true">↗</div>
+            <h3>Контроль устойчивости</h3>
+            <p>Электронные системы стабилизации помогают сохранять траекторию в сложных дорожных условиях.</p>
+          </article>
+          <article class="safety-card">
+            <div class="safety-icon" aria-hidden="true">◎</div>
+            <h3>Тормозные системы</h3>
+            <p>Современные тормоза и электронное распределение усилия помогают управлять замедлением.</p>
+          </article>
+          <article class="safety-card">
+            <div class="safety-icon" aria-hidden="true">◇</div>
+            <h3>Помощь водителю</h3>
+            <p>В зависимости от модели и комплектации доступны системы помощи и предупреждения об опасности.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  <details>
-    <summary style="font-size: 25px;">⚙️ Технические характеристики</summary>
-    <table border="1" style="margin: 0 auto; width: 700px;">
-      <colgroup>
-        <col style="width: 400px; background-color: #f8f8f8;">
-        <col style="width: 400px; background-color: #f8f8f8;">
-      </colgroup>
-      <tr style="font-size: 20px;"><th>Характеристика</th><th>Значение</th></tr>
-      <tr style="font-size: 20px;"><td>Тип двигателя</td><td>Гибридный (V6 3.0 л + электромотор)</td></tr>
-      <tr style="font-size: 20px;"><td>Расход топлива</td><td>~6.4 л/100 км (WLTP)</td></tr>
-      <tr style="font-size: 20px;"><td>Тип КПП</td><td>Роботизированная (DCT)</td></tr>
-      <tr style="font-size: 20px;"><td>Количество передач</td><td>8</td></tr>
-      <tr style="font-size: 20px;"><td>Габариты (Д×Ш×В)</td><td>4565 × 1958 × 1187 мм</td></tr>
-      <tr style="font-size: 20px;"><td>Объём багажника</td><td>201 л</td></tr>
-      <tr style="font-size: 20px;"><td>Тормоза</td><td>Дисковые вентилируемые (карбон-керамика)</td></tr>
-      <tr style="font-size: 20px;"><td>Гарантия</td><td>3 года + 7 лет техобслуживания</td></tr>
-      <tr style="font-size: 20px;"><td>Wi-Fi / Bluetooth</td><td>Bluetooth – да; Wi-Fi – опционально</td></tr>
-    </table>
-  </details>
-
-  <details style="font-size: 25px;">
-    <summary>📊 Рейтинг безопасности (условный)</summary>
-    <p style="font-size: 20px; text-align: center;">Официального рейтинга Euro NCAP для Ferrari 296 GTB нет.</p>
-    <p style="font-size: 20px; text-align: center;">Пассивная безопасность: <progress value="88" max="100"></progress> 88%</p>
-    <p style="font-size: 20px; text-align: center;">Активная безопасность: <progress value="92" max="100"></progress> 92%</p>
-    <p style="font-size: 20px; text-align: center;">Системы помощи водителю: <progress value="85" max="100"></progress> 85%</p>
-  </details>
-</article>
-<br>
-<br>
-<article style="background: #e5f7ab; border-radius: 14px; padding: 32px 28px 25px 32px; box-shadow: 0 6px 18px rgba(0,0,0,1); position: relative; overflow: hidden; border-left: 7px solid #a4be4f;">
-  <aside>
-    <h4 style="text-align: center; font-size: 30px;">💡 Интересный факт</h4>
-    <p style="font-size: 25px;">
-      Индекс <b>296</b> в названии означает <mark>2.9 литра</mark> рабочий объём
-      и <b>6</b> цилиндров. Это самый мощный серийный V6 в истории Ferrari –
-      <em>663 л.с.</em> только от двигателя внутреннего сгорания!
-    </p>
-  </aside>
-</article>
-  </section> 
-  <section id="purosangue" style="scroll-margin-top: 100px;">
-    <br>
-<br>
-<h1 style="text-align: center; font-size: 50px;">Ferrari Purosangue</h1>
-
-<figure style="text-align: center">
-  <img src="Ма3.3.jpg"
-       alt="Ferrari Purosangue – первый кроссовер Ferrari"
-       title="Ferrari Purosangue"
-       width="850" height="500">
-  <figcaption style="text-align: center; font-size: 18px;">Ferrari Purosangue – первый четырёхдверный автомобиль марки</figcaption>
-</figure>
-
-<p>
-  <article style="background: #ffe4ea; font-size: 28px; border-radius: 14px; padding: 32px 28px 25px 32px; box-shadow: 0 6px 18px rgba(0,0,0,1); position: relative; overflow: hidden; border-left: 7px solid #bc0000;">
-    <b>Ferrari Purosangue</b> – это <em>первый кроссовер</em> (FAV –
-    <i>Ferrari Active Vehicle</i>) в истории марки, представленный в
-    <time datetime="2022-09-13">сентябре 2022 года</time>.
-    Оснащён <mark>атмосферным V12</mark> – дань традициям.
-  </article>
-</p>
-<br>
-<h2 style="text-align: center; font-size: 30px;">Ключевые параметры</h2>
-
-<div style="text-align: center;">
-  <table border="1" style="margin: 0 auto; width: 1000px; font-size: 28px;">
-    <colgroup>
-      <col style="width: 400px; background: #ffe4ea">
-      <col style="width: 400px; background: #f8f8f8">
-    </colgroup>
-    <tr><th>Параметр</th><th>Значение</th></tr>
-    <tr><td>Двигатель</td><td>V12 6.5 л атмосферный</td></tr>
-    <tr><td>Мощность</td><td>725 л.с.</td></tr>
-    <tr><td>Разгон 0–100</td><td>3.3 с</td></tr>
-    <tr><td>Макс. скорость</td><td>310 км/ч</td></tr>
-    <tr><td>Багажник</td><td>473 л</td></tr>
-    <tr><td>Цена</td><td>~€390 000</td></tr>
-  </table>
-</div>
-<br>
-<br>
-<h2 style="text-align: center; font-size: 30px;">Раскрывающаяся информация</h2>
-<article style="background: #ffe4ea; border-radius: 14px; padding: 32px 28px 25px 32px; box-shadow: 0 6px 18px rgba(0,0,0,1); position: relative; overflow: hidden; border-left: 7px solid #bc0000;">
-  <details>
-    <summary style="font-size: 25px;">🔒 Системы безопасности</summary>
-    <ul>
-      <li style="font-size: 20px;">ABS – антиблокировочная система</li>
-      <li style="font-size: 20px;">ESP – система курсовой устойчивости</li>
-      <li style="font-size: 20px;">Подушки безопасности (фронтальные, боковые, шторки)</li>
-      <li style="font-size: 20px;">Система удержания полосы движения</li>
-      <li style="font-size: 20px;">Адаптивный круиз-контроль</li>
-      <li style="font-size: 20px;">Система предотвращения столкновений (AEB)</li>
-      <li style="font-size: 20px;">Контроль слепых зон</li>
-      <li style="font-size: 20px;">Камеры кругового обзора</li>
-    </ul>
-  </details>
-
-  <details>
-    <summary style="font-size: 25px;">⚙️ Технические характеристики</summary>
-    <table border="1" style="margin: 0 auto; width: 700px;">
-      <colgroup>
-        <col style="width: 400px; background-color: #f8f8f8;">
-        <col style="width: 400px; background-color: #f8f8f8;">
-      </colgroup>
-      <tr style="font-size: 20px;"><th>Характеристика</th><th>Значение</th></tr>
-      <tr style="font-size: 20px;"><td>Тип двигателя</td><td>Бензиновый, V12 6.5 л атмосферный</td></tr>
-      <tr style="font-size: 20px;"><td>Расход топлива</td><td>~17.3 л/100 км (WLTP)</td></tr>
-      <tr style="font-size: 20px;"><td>Тип КПП</td><td>Роботизированная (DCT)</td></tr>
-      <tr style="font-size: 20px;"><td>Количество передач</td><td>8</td></tr>
-      <tr style="font-size: 20px;"><td>Габариты (Д×Ш×В)</td><td>4973 × 2028 × 1589 мм</td></tr>
-      <tr style="font-size: 20px;"><td>Объём багажника</td><td>473 л</td></tr>
-      <tr style="font-size: 20px;"><td>Тормоза</td><td>Дисковые вентилируемые (карбон-керамика)</td></tr>
-      <tr style="font-size: 20px;"><td>Гарантия</td><td>3 года + продления</td></tr>
-      <tr style="font-size: 20px;"><td>Wi-Fi / Bluetooth</td><td>Bluetooth – да; Wi-Fi – опционально</td></tr>
-    </table>
-  </details>
-
-  <details style="font-size: 25px;">
-    <summary>📊 Рейтинг безопасности (условный)</summary>
-    <p style="font-size: 20px; text-align: center;">Официального рейтинга Euro NCAP для Ferrari Purosangue нет.</p>
-    <p style="font-size: 20px; text-align: center;">Пассивная безопасность: <progress value="90" max="100"></progress> 90%</p>
-    <p style="font-size: 20px; text-align: center;">Активная безопасность: <progress value="95" max="100"></progress> 95%</p>
-    <p style="font-size: 20px; text-align: center;">Системы помощи водителю: <progress value="92" max="100"></progress> 92%</p>
-  </details>
-</article>
-<br>
-<br>
-<article style="background: #e5f7ab; border-radius: 14px; padding: 32px 28px 25px 32px; box-shadow: 0 6px 18px rgba(0,0,0,1); position: relative; overflow: hidden; border-left: 7px solid #a4be4f;">
-  <aside>
-    <h4 style="text-align: center; font-size: 30px;">💡 Интересный факт</h4>
-    <p style="font-size: 25px;">
-      <b>Purosangue</b> переводится с итальянского как <mark>«чистокровный»</mark>.
-      Несмотря на то, что это кроссовер, Ferrari настаивает на термине
-      <em>FAV</em> (Ferrari Active Vehicle), чтобы подчеркнуть его
-      спортивную сущность. Габариты: 4973 × 2028 × 1589 мм, колёсная база — 3018 мм [citation:1][citation:17].
-    </p>
-  </aside>
-</article>
-  </section>
+    <section class="cta">
+      <div class="container cta-inner">
+        <h2>Выбери свой характер скорости</h2>
+        <a class="button" href="#models">Смотреть модели</a>
+      </div>
+    </section>
   </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <strong>FERRARI</strong>
+        <span>Дизайн-концепт сайта · 2026</span>
+      </div>
+      <p class="disclaimer">Неофициальный демонстрационный сайт. Цены и характеристики указаны ориентировочно для сравнения и могут отличаться в зависимости от года выпуска, рынка и комплектации. Изображения загружаются из внешнего источника.</p>
+    </div>
+  </footer>
 </body>
+</html>
