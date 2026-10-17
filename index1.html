@@ -420,6 +420,135 @@
     grid-template-columns: 1fr;
   }
 }
+/* Галерея со стрелками без JavaScript */
+.photo-carousel {
+  position: relative;
+  overflow: hidden;
+  background: #111;
+}
+
+.photo-carousel input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.photo-track {
+  display: flex;
+  width: 500%;
+  transition: transform 0.5s ease;
+}
+
+.photo-slide {
+  position: relative;
+  width: 20%;
+  height: 480px;
+  flex-shrink: 0;
+}
+
+.photo-slide img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 35px 30px 25px;
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: linear-gradient(transparent, rgba(0, 0, 0, .85));
+}
+
+#slide-1:checked ~ .photo-track {
+  transform: translateX(0);
+}
+
+#slide-2:checked ~ .photo-track {
+  transform: translateX(-20%);
+}
+
+#slide-3:checked ~ .photo-track {
+  transform: translateX(-40%);
+}
+
+#slide-4:checked ~ .photo-track {
+  transform: translateX(-60%);
+}
+
+#slide-5:checked ~ .photo-track {
+  transform: translateX(-80%);
+}
+
+/* Стрелки */
+.photo-arrows .arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  display: none;
+  width: 52px;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+  background: #e10600;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  user-select: none;
+  transition: background .2s ease;
+}
+
+.photo-arrows .arrow:hover {
+  background: #b80000;
+}
+
+.arrow-prev {
+  left: 20px;
+}
+
+.arrow-next {
+  right: 20px;
+}
+
+#slide-1:checked ~ .photo-arrows .prev-1,
+#slide-1:checked ~ .photo-arrows .next-1,
+#slide-2:checked ~ .photo-arrows .prev-2,
+#slide-2:checked ~ .photo-arrows .next-2,
+#slide-3:checked ~ .photo-arrows .prev-3,
+#slide-3:checked ~ .photo-arrows .next-3,
+#slide-4:checked ~ .photo-arrows .prev-4,
+#slide-4:checked ~ .photo-arrows .next-4,
+#slide-5:checked ~ .photo-arrows .prev-5,
+#slide-5:checked ~ .photo-arrows .next-5 {
+  display: flex;
+}
+
+@media (max-width: 650px) {
+  .photo-slide {
+    height: 300px;
+  }
+
+  .photo-arrows .arrow {
+    width: 42px;
+    height: 42px;
+    font-size: 24px;
+  }
+
+  .arrow-prev {
+    left: 10px;
+  }
+
+  .arrow-next {
+    right: 10px;
+  }
+}
   </style>
 </head>
 <body>
@@ -435,6 +564,7 @@
         <a href="#technology">Технологии</a>
         <a href="#comparison">Сравнение</a>
         <a href="#safety">Безопасность</a>
+        <a href="#gallery">Галерея</a>
       </nav>
     </div>
   </header>
@@ -616,7 +746,64 @@
         </div>
       </div>
     </section>
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">МИР FERRARI</span>
+        <h2>Фото галерея</h2>
+      </div>
+      <p>Скорость, дизайн и итальянский характер.</p>
+    </div>
 
+    <div class="photo-carousel">
+
+      <input type="radio" name="gallery-slide" id="slide-1" checked>
+      <input type="radio" name="gallery-slide" id="slide-2">
+      <input type="radio" name="gallery-slide" id="slide-3">
+      <input type="radio" name="gallery-slide" id="slide-4">
+      
+
+      <div class="photo-track">
+
+        <div class="photo-slide">
+          <img src="Ма1.jpg" alt="Спортивный автомобиль">
+          <div class="photo-caption">01 / 05 — Итальянская легенда</div>
+        </div>
+
+        <div class="photo-slide">
+          <img src="Ма2.2.jpg" alt="Спортивный автомобиль на дороге">
+          <div class="photo-caption">02 / 05 — Скорость и стиль</div>
+        </div>
+
+        <div class="photo-slide">
+          <img src="Ма3.3.jpg" alt="Дизайн автомобиля">
+          <div class="photo-caption">03 / 05 — Совершенство деталей</div>
+        </div>
+
+        <div class="photo-slide">
+          <img src="Машина1.png" alt="Автомобиль крупным планом">
+          <div class="photo-caption">04 / 05 — Инженерное искусство</div>
+        </div>
+      </div>
+
+      <div class="photo-arrows">
+        <label class="arrow arrow-prev prev-1" for="slide-5">←</label>
+        <label class="arrow arrow-next next-1" for="slide-2">→</label>
+
+        <label class="arrow arrow-prev prev-2" for="slide-1">←</label>
+        <label class="arrow arrow-next next-2" for="slide-3">→</label>
+
+        <label class="arrow arrow-prev prev-3" for="slide-2">←</label>
+        <label class="arrow arrow-next next-3" for="slide-4">→</label>
+
+        <label class="arrow arrow-prev prev-4" for="slide-3">←</label>
+        <label class="arrow arrow-next next-4" for="slide-1">→</label>
+      </div>
+
+    </div>
+  </div>
+</section>
     <section class="cta">
       <div class="container cta-inner">
         <h2>Выбери свой характер скорости</h2>
